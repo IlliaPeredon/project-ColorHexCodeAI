@@ -17,14 +17,14 @@ namespace ColorAiApp
             _http = new HttpClient();
             _http.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
         }
-        
+         
         public async Task<List<string>> GetColors(string description)
         {
             var prompt = $"Give exactly 3 hex color codes for: {description}. Only hex, each on new line.";
 
             var body = new
             {
-                model = "gpt-4.1-mini",
+                model = "gpt-5.5",
                 messages = new[]
                 {
                 new { role = "user", content = prompt }
