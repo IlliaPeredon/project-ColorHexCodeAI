@@ -37,6 +37,7 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            button2 = new Button();
             SuspendLayout();
             // 
             // txtInput
@@ -112,12 +113,23 @@
             label3.TabIndex = 7;
             label3.Text = "label3";
             // 
+            // button2
+            // 
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.Location = new Point(418, 399);
+            button2.Name = "button2";
+            button2.Size = new Size(50, 50);
+            button2.TabIndex = 8;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnHistory_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
-            ClientSize = new Size(468, 388);
+            ClientSize = new Size(468, 447);
+            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -143,5 +155,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private Button button2;
     }
 }
