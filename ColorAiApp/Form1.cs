@@ -10,11 +10,14 @@ namespace ColorAiApp
     public partial class Form1 : Form
     {
         private ColorService _service;
+        private ContextMenuStrip _labelMenu;
+
         public Form1()
         {
             InitializeComponent();
             _service = new ColorService("*API*");
 
+            InitializeLabelCopying();
         }
 
         string filePath = "C:\\Users\\minep\\Desktop\\univ_2\\programming with ai\\project\\ColorAiApp\\history.txt";
@@ -78,6 +81,95 @@ namespace ColorAiApp
             };
 
             form.Show();
+        }
+
+        private void InitializeLabelCopying()
+        {
+            _labelMenu = new ContextMenuStrip();
+            var miCopyHex = new ToolStripMenuItem("Copy Hex");
+            var miCopyRgb = new ToolStripMenuItem("Copy RGB");
+            var miCopyAll = new ToolStripMenuItem("Copy All");
+
+            miCopyHex.Click += CopyHex_Click;
+            miCopyRgb.Click += CopyRGB_Click;
+            miCopyAll.Click += CopyAll_Click;
+
+            _labelMenu.Items.AddRange(new ToolStripItem[] { miCopyHex, miCopyRgb, miCopyAll });
+
+            label1.MouseUp += Label_MouseUp;
+            label2.MouseUp += Label_MouseUp;
+            label3.MouseUp += Label_MouseUp;
+
+            label1.DoubleClick += Label_DoubleClick;
+            label2.DoubleClick += Label_DoubleClick;
+            label3.DoubleClick += Label_DoubleClick;
+
+            label1.Cursor = Cursors.Hand;
+            label2.Cursor = Cursors.Hand;
+            label3.Cursor = Cursors.Hand;
+        }
+
+        private void Label_MouseUp(object? sender, MouseEventArgs e)
+        {
+            if (sender is not Label lbl) return;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                _labelMenu.Tag = lbl;
+                _labelMenu.Show(Cursor.Position);
+            }
+            else if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Control)
+            {
+                CopyHex(lbl);
+            }
+        }
+
+        private void Label_DoubleClick(object? sender, EventArgs e)
+        {
+            if (sender is not Label lbl) return;
+            CopyHex(lbl);
+        }
+
+        private void CopyHex_Click(object? sender, EventArgs e)
+        {
+            if (_labelMenu.Tag is not Label lbl) return;
+            CopyHex(lbl);
+        }
+
+        private void CopyRGB_Click(object? sender, EventArgs e)
+        {
+            if (_labelMenu.Tag is not Label lbl) return;
+            var lines = GetLabelLines(lbl);
+            if (lines.Length <= 1)
+            {
+                Clipboard.SetText(string.Empty);
+                return;
+            }
+
+            var rgb = string.Join(Environment.NewLine, lines.Skip(1));
+            Clipboard.SetText(rgb);
+        }
+
+        private void CopyAll_Click(object? sender, EventArgs e)
+        {
+            if (_labelMenu.Tag is not Label lbl) return;
+            Clipboard.SetText(lbl.Text);
+        }
+
+        private static string[] GetLabelLines(Label lbl)
+        {
+            return lbl.Text
+                      .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                      .Select(s => s.Trim())
+                      .ToArray();
+        }
+
+        private static void CopyHex(Label lbl)
+        {
+            var lines = GetLabelLines(lbl);
+            if (lines.Length == 0) return;
+            var hex = lines[0];
+            Clipboard.SetText(hex);
         }
     }
 

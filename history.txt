@@ -1,2 +1,16 @@
 Cherry blossom|#FFB7C5,#FADADD,#FFE4E1
 Ice tea|#C97A2B,#D9A15F,#8B4A1F
+Soft white with a very small ammount of yellow|#FFFDF5,#FFFEF8,#FFFBEF
+calming darkblue for late evening spring night|#0B1F3A,#12355B,#1A3A5F
+red vine|#7B1E24,#9E2A2F,#C23B3B
+blue like sea |#006994,#0077BE,#00A6D6
+gold|#FFD700,#FFC107,#DAA520
+tulip|#FF878D,#E94B6A,#F7D046
+champaigne|#F7E7CE,#F3E5AB,#EED9B6
+invisible|#FFFFFF,#F8F8F8,#F0F0F0
+mango|#FFC324,#FFB000,#FF8C00
+wall|#F2F0E6,#D8D2C4,#B7A99A
+diamond|#EAFBFF,#B9E6F2,#F8FFFF
+circle|#FF0000,#000000,#FFFFFF
+not blue|#FF5733,#28A745,#FFD700
+my wife's eyes|#6B4F3A,#8A6F4D,#C2A77A
